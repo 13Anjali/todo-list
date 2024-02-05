@@ -1,0 +1,14 @@
+{# templates/tasks/add_task.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Add Task{% endblock %}
+
+{% block body %}
+    <h1>Add Task</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.isComplete) }}
+    {{ form_row(form.save) }}
+    {{ form_end(form) }}
+{% endblock %}

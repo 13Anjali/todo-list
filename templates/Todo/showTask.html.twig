@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show Tasks{% endblock %}
+
+{% block body %}
+    <h1>Show Tasks</h1>
+    <form method="post" action="{{path('app_todo_add_task',{'username':username})}}">
+                    <label for="description">Add Description:</label>
+                    <input type="text" id="description" name="description" placeholder="Enter task description">
+                    <input type="hidden" name="isComplete" value="0">
+                    <label for="isComplete">Is Complete:</label>
+                    <input type="checkbox" id="isComplete" name="isComplete" value="1">
+                    <button type="submit">Add Task</button>
+                </form>
+    </form>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                {{ task.id }}: {{ task.description }}
+                {% if task.isComplete == false %}
+                <form method="post" action="{{ path('app_todo_update_task', {'username': username, 'id': task.id}) }}">
+                    <label for="description">New Description:</label>
+                    <input type="text" id="description" name="description" placeholder="Enter new description">
+                    <input type="hidden" name="isComplete" value="0">
+                    <label for="isComplete">Is Complete:</label>
+                    <input type="checkbox" id="isComplete" name="isComplete" value="1">
+                    <button type="submit">Update Task</button>
+                </form>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
